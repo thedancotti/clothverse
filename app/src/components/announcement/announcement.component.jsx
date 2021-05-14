@@ -4,10 +4,10 @@ import './announcement.styles.scss';
 
 const Announcement = () => (
     <div className="announcement">
-        {"Spring Sale!" + " - "}
+        {"Summer Sale!" + " - "}
 
         <span className="call-to-action">
-            {"Top spring styles now on sale!"}
+            {"Top summer styles now on sale!"}
         </span>
     </div>
 );

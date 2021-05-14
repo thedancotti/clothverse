@@ -1,15 +1,17 @@
 import './App.css';
 
-import Announcement from './components/announcement/announcement.component';
-import NavigationBar from './components/navigation-bar/navigation-bar.component';
+import Header from './components/header/header.component';
 import HeroSection from './components/hero-section/hero-section.component';
+import MissionSection from './components/mission-section/mission-section.component';
+import Directory from './components/directory/directory.component';
 
 function App() {
   return (
     <div className="App">
-      <Announcement />
-      <NavigationBar />
+      <Header />
       <HeroSection />
+      <MissionSection />
+      <Directory />
     </div>
   );
 }
