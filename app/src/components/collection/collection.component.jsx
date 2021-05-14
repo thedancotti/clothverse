@@ -1,12 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import './collection.styles.css';
 
 const Collection = ({ name, imageUrl }) => (
-    <div 
-        className="collection relative flex justify-center items-center"
-        style={{height: "240px"}}
-    >
+    <Link to={`/shop/${name}`}>
+        <div 
+            className="collection relative flex justify-center items-center"
+            style={{height: "240px"}}
+        >
             <div className="w-100 h-100 cover"
                 style={{backgroundImage: `url(${imageUrl})`}}>
             </div>
@@ -18,6 +20,8 @@ const Collection = ({ name, imageUrl }) => (
                 </h1>
             </div>
         </div>
+    </Link>
+    
 );
 
 export default Collection;

@@ -1,0 +1,9 @@
+.cart-dropdown {
+    height: 300px;
+    width: 240px;
+    border: 1px solid black;
+    position: absolute;
+    top: 4rem;
+    right: 1rem;
+    background: white;
+}

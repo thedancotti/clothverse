@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import CollectionItem from '../collection-item/collection-item.component';
 
 const CollectionPreview = ({ collection }) => {
-    console.log(collection)
     const { title, items, routeName } = collection;
     return (
         <div className="collection-preview mt3">
@@ -13,27 +13,15 @@ const CollectionPreview = ({ collection }) => {
             >
                 { title }
             </Link>
-            <div className="mt2 flex flex-wrap flex-auto"
+            <div 
+                className="mt2 flex flex-wrap flex-auto"
                 style={{justifyContent: "space-evenly"}}
             >
                 {
                     items
                     .filter((item, index) => index < 4)
-                    .map(item => 
-                        <div 
-                            className="flex flex-column justify-center items-center"
-                            style={{width: "45%", }}>
-                           <div>
-                                <img 
-                                    className="w-100"
-                                    style={{height:"250px"}}
-                                    src={item.imageUrl}
-                                    alt="" 
-                                />
-                           </div>
-                            
-                            <p className="mt1 b tc">{item.name}</p>
-                        </div>
+                    .map((item, index) => 
+                        <CollectionItem key={index} item={item} hidePrice />
                     )
                 }
             </div>
