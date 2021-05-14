@@ -9,7 +9,7 @@ const HeroSection = () => (
             backgroundImage: `url(https://i.ibb.co/GWCnmjR/yellow-track-suit-small.jpg)`}}
     >
         <h1 className="absolute title f2">Step into Summer</h1>
-        <a className="f3 link dim dib white bg-black ph4 pv3" href="#0">Shop Womens</a>
+        <a className="f3 link dim dib white bg-black ph4 pv3" href="/shop">Shop Summer</a>
 
     </div>
 );

@@ -1,12 +1,12 @@
 import React from 'react';
 
-import './announcement.styles.scss';
-
 const Announcement = () => (
-    <div className="announcement">
-        {"Summer Sale!" + " - "}
+    <div className="pa3 f6 white tc ttu"
+        style={{backgroundColor: "#b21900"}}
+    >
+        {"Summer Sale! - "}
 
-        <span className="call-to-action">
+        <span className="underline fw6">
             {"Top summer styles now on sale!"}
         </span>
     </div>

@@ -6,7 +6,8 @@ import NavigationBar from '../navigation-bar/navigation-bar.component';
 const Header = () => (
     <div 
         className="header fixed top-0 w-100 bg-white"
-        style={{zIndex: 1}}
+        style={{
+            zIndex: 1}}
     >
         <Announcement />
         <NavigationBar />
