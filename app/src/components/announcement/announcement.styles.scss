@@ -1,0 +1,16 @@
+.announcement {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 0;
+    background-color: #b21900;
+    color: white;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+
+    .call-to-action {
+        text-decoration: underline;
+        font-weight: 600;
+        margin-left: 2.5px;
+    }
+}
