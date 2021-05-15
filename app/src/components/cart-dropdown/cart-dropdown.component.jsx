@@ -1,13 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
 
+import { toggleCartHidden } from '../../redux/cart/cart.actions';
+
 import { selectCartItems } from '../../redux/cart/cart.selectors';
+
 import CartItem from '../cart-item/cart-item.component';
 import CustomButton from '../custom-button/custom-button.component';
 import './cart-dropdown.styles.css';
 
-const CartDropdown = ({ cartItems }) => (
+const CartDropdown = ({ cartItems, toggleCartHidden }) => (
     <div className="cart-dropdown flex flex-column">
         <div className="pre" style={{height: "300px"}}>
             {
@@ -23,11 +27,14 @@ const CartDropdown = ({ cartItems }) => (
                 
             }
         </div>
-        <CustomButton
-            customStyle=""
-        >
-            GO TO CHECKOUT
-        </CustomButton>
+        <Link to="/checkout" onClick={toggleCartHidden}>
+            <CustomButton
+                customStyle=""
+            >
+                GO TO CHECKOUT
+            </CustomButton>
+        </Link>
+        
     </div>
 );
 
@@ -35,4 +42,8 @@ const mapStateToProps = createStructuredSelector({
     cartItems: selectCartItems
 })
 
-export default connect(mapStateToProps)(CartDropdown);
+const mapDispatchToProps = dispatch => ({
+    toggleCartHidden: () => dispatch(toggleCartHidden())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(CartDropdown);
