@@ -6,4 +6,5 @@
     top: 4rem;
     right: 1rem;
     background: white;
+    overflow: scroll;
 }
