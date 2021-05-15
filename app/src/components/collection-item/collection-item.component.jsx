@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { addItemToCart } from '../../redux/cart/cart.actions';
+import CustomButton from '../custom-button/custom-button.component';
 
 const CollectionItem = ({ item, addItem, ...otherProps }) => { 
     const { name, price, imageUrl } = item;
@@ -27,12 +28,12 @@ const CollectionItem = ({ item, addItem, ...otherProps }) => {
                             <p className="tc mt1 mb3">
                                 { `$${price}`}
                             </p>
-                            <button 
-                                className="f6 link dim ph3 pv2 mb2 dib white bg-black mb4"
+                            <CustomButton
+                                customStyle="mb4"
                                 onClick={() => addItem(item)}
                             >
                                 Add to Cart
-                            </button>
+                            </CustomButton>
                         </React.Fragment>
                         
                     ) : <div className="mb4"></div>

@@ -10,7 +10,6 @@ const ShopPage = ({ match }) => (
             marginTop: '160px'
         }}
     >
-        { console.log(match) }
         <Route exact path={`${match.path}`} component={CollectionsOverview} />
         <Route path={`${match.path}/:collectionId`} component={CollectionPage} />
     </div>
