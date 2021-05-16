@@ -5,7 +5,7 @@ import { createStructuredSelector } from 'reselect';
 
 import { signOut } from '../../firebase/firebase.utils';
 
-import { selectCurrentUserData } from '../../redux/user/user.selectors';
+import { selectCurrentUser } from '../../redux/user/user.selectors';
 import { setCurrentUser } from '../../redux/user/user.actions';
 
 import './dropdown-menu.styles.css';
@@ -113,7 +113,7 @@ const DropdownMenu = ({ toggleDropdownMenu, currentUser, setCurrentUser }) => {
 };
 
 const mapStateToProps = createStructuredSelector({
-    currentUser: selectCurrentUserData
+    currentUser: selectCurrentUser
 });
 
 const mapDispatchToProps = dispatch => ({

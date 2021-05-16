@@ -10,6 +10,7 @@ import {
     signInWithEmailAndPassword, 
     createUserWithEmailAndPassword,
     signInWithGoogle,
+    firestoreDb
 } from '../../firebase/firebase.utils';
 
 import { createStructuredSelector } from 'reselect';
@@ -61,9 +62,16 @@ class SignInAndSignUp extends React.Component {
             alert(`Unable to sign up. Passwords don't match!`);
         } else {
             createUserWithEmailAndPassword(email, password)
-                .then(user => {
-                    this.props.setCurrentUser(user);
-
+                .then(result => {
+                    const { uid, email } = result.user;
+                    const user = {
+                        uid,
+                        displayName: this.state.userCredentials.firstName,
+                        email
+                    };
+        
+                    firestoreDb.collection("users").doc(email).set(user);
+                    this.props.setCurrentUser(user)
                 })
                 .catch(error => alert(error.message))
         }
@@ -73,13 +81,31 @@ class SignInAndSignUp extends React.Component {
         const { email, password } = this.state.userCredentials;
 
         signInWithEmailAndPassword(email, password)
-        .then(user => this.props.setCurrentUser(user))
+        .then(result => {
+            const userRef = firestoreDb.collection("users").doc(email);
+            userRef.get().then(user => {
+                if (user.exists) {
+                    this.props.setCurrentUser(user.data());
+                } else {
+                    alert('This user does not exist in the database. Please create an account first before logging in.');
+                }
+            });
+        })
         .catch(error => alert(error.message))
     }
 
     handleSignInWithGoogle = () => {
         signInWithGoogle()
-        .then(user => this.props.setCurrentUser(user))
+        .then(result => {
+            const { uid, email, displayName } = result.user;
+            const user = {
+                uid,
+                email,
+                displayName
+            };
+            firestoreDb.collection("users").doc(email).set(user);
+            this.props.setCurrentUser(user);
+        })
         .catch(error => alert(error.message));
     }
 

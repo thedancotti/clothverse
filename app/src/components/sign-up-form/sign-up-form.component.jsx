@@ -28,10 +28,27 @@ const SignUpForm = ({
                     <div className="flex flex-column pa3">
                         <input 
                             type="text" 
+                            name="firstName" 
+                            placeholder="First name" 
+                            className="pv2 ph2 mb3" 
+                            onChange={handleChange}
+                            required
+                        />
+                        <input 
+                            type="text" 
+                            name="lastName" 
+                            placeholder="Last name" 
+                            className="pv2 ph2 mb3" 
+                            onChange={handleChange}
+                            required
+                        />
+                        <input 
+                            type="text" 
                             name="email" 
                             placeholder="Email" 
                             className="pv2 ph2 mb3" 
                             onChange={handleChange}
+                            required
                         />
                         <input 
                             type="password" 
@@ -39,6 +56,7 @@ const SignUpForm = ({
                             placeholder="Create a password" 
                             className="pv2 ph2 mb3"
                             onChange={handleChange}
+                            required
                         />
                         <input 
                             type="password" 
@@ -46,6 +64,7 @@ const SignUpForm = ({
                             placeholder="Confirm password" 
                             className="pv2 ph2 mb3"
                             onChange={handleChange}
+                            required
                         />
 
                         <CustomButton onClick={handleSignUp}>

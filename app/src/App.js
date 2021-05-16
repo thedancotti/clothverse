@@ -16,9 +16,6 @@ import { setShopData } from './redux/shop/shop.actions';
 import './App.css';
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-  }
 
   componentDidMount() {
     firestoreDb.collection("collections")

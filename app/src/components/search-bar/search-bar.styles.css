@@ -1,0 +1,17 @@
+.search-bar, input {
+    background-color: #f9f9f9
+}
+
+.search-bar input {
+    border: none;
+    box-shadow: none;
+    outline: none;
+    color: #c1c1c1;
+}
+
+.search-bar input[type="text"]:focus {
+    background: #fafafa;
+    border-color: #999;
+    border-bottom: 1px solid;
+    outline: none;
+}

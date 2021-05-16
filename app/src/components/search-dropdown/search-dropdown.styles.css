@@ -1,0 +1,10 @@
+.search-dropdown-results {
+    overflow: scroll;
+    max-height: 77vh;
+}
+
+.search-dropdown-results > .description {
+    color: #666;
+    background: #eaeaea;
+    padding: .5rem;
+}

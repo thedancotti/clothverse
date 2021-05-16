@@ -15,33 +15,40 @@ import { ReactComponent as MenuIcon } from '../../assets/menu-icon.svg';
 import CartDropdown from '../cart-dropdown/cart-dropdown.component';
 import DropdownMenu from '../dropdown-menu/dropdown-menu.component';
 
-const NavigationBar = ({ toggleCartHidden, isCartHidden }) => {
+import './navigation-bar.styles.css';
+import SearchBar from '../search-bar/search-bar.component';
+
+const NavigationBar = ({ toggleCartHidden, isCartHidden, collections, items }) => {
     const [isDropdownMenuHidden, setDropdownMenuStatus] = useState(true);
-    
+    const [isSearchBarHidden, setSearchBarStatus] = useState(true);
+
     const toggleDropdownMenu = () => 
         setDropdownMenuStatus(!isDropdownMenuHidden);
 
     return (
         <div className="relative">
-            <div className="flex justify-between items-center pa3">
-                { !isDropdownMenuHidden 
-                  ? <MenuIcon onClick={toggleDropdownMenu} style={{visibility: "hidden"}}/>
-                  : <MenuIcon onClick={toggleDropdownMenu} style={{visibility: "visible"}}/>
-                }
-                <div className="flex flex-column items-center">
-                    <Link to='/'>
-                        <Logo style={{height: "20px"}}/>
-                    </Link>
-                    <Link to='/' className="link">
-                        <h1 className="f5 ma0 black">clothverse</h1>
-                    </Link>
-                </div>
-                <div className="flex">
-                    <SearchIcon className="mr2"/>
-                    <CartIcon onClick={toggleCartHidden}/>
-                </div>
-            </div>
-
+            {
+                isSearchBarHidden ? (
+                    <div className="flex justify-between items-center pa3">
+                        { !isDropdownMenuHidden 
+                        ? <MenuIcon onClick={toggleDropdownMenu} style={{visibility: "hidden"}}/>
+                        : <MenuIcon onClick={toggleDropdownMenu} style={{visibility: "visible"}}/>
+                        }
+                        <div className="flex flex-column items-center">
+                            <Link to='/'>
+                                <Logo style={{height: "20px"}}/>
+                            </Link>
+                            <Link to='/' className="link">
+                                <h1 className="f5 ma0 black">clothverse</h1>
+                            </Link>
+                        </div>
+                        <div className="flex">
+                            <SearchIcon className="mr2" onClick={() => setSearchBarStatus(false)}/>
+                            <CartIcon onClick={toggleCartHidden}/>
+                        </div>
+                    </div>
+                ) : <SearchBar setSearchBarStatus={setSearchBarStatus}/>
+            }
             { !isCartHidden ? <CartDropdown /> : null }
             { !isDropdownMenuHidden ? <DropdownMenu toggleDropdownMenu={toggleDropdownMenu} /> : null }
             
@@ -54,7 +61,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const mapStateToProps = createStructuredSelector({
-    isCartHidden: selectCartHidden
+    isCartHidden: selectCartHidden,
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavigationBar);

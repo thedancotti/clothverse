@@ -16,3 +16,14 @@ export const selectCollection = collectionUrlParam => createSelector(
     [selectCollections],
     collections => collections[collectionUrlParam]
 );
+
+export const selectItems = createSelector(
+    [selectCollectionsForPreview],
+    collections => collections.reduce((acc, collection) =>
+        acc.concat(collection.items), [])
+);
+
+// export const selectTargetItems = createSelector(
+//     [selectCollectionsForPreview],
+//     collections => 
+// )
