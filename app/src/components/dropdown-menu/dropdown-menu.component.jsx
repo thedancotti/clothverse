@@ -1,10 +1,25 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { createStructuredSelector } from 'reselect';
+
+import { signOut } from '../../firebase/firebase.utils';
+
+import { selectCurrentUserData } from '../../redux/user/user.selectors';
+import { setCurrentUser } from '../../redux/user/user.actions';
+
 import './dropdown-menu.styles.css';
 
 import { ReactComponent  as CloseMenuIcon } from '../../assets/icon-close.svg';
 
-const DropdownMenu = ({ toggleDropdownMenu }) => {
+const DropdownMenu = ({ toggleDropdownMenu, currentUser, setCurrentUser }) => {
+
+    const handleSignOutClick = () => {
+        toggleDropdownMenu();
+        signOut();
+        setCurrentUser(null);
+    }
+
     return (
         <div className="dropdown-menu">
             <CloseMenuIcon 
@@ -13,13 +28,26 @@ const DropdownMenu = ({ toggleDropdownMenu }) => {
             />
             
                 <div className="dropdown-menu-item">
-                        <Link to='/signin' onClick={toggleDropdownMenu}>
-                            <p className="b">Hello, Sign In</p>
+                    {
+                        currentUser ? (
+                            <Link to='/my-profile' onClick={toggleDropdownMenu}>
+                                <p className="b">{`Hello, ${currentUser.displayName}`}</p>
+                            
+                                <span className="icon">
+                                    ❯
+                                </span>
+                            </Link>
+                        ) : ( 
+                            <Link to='/signin' onClick={toggleDropdownMenu}>
+                                <p className="b">Hello, Sign In</p>
+                            
+                                <span className="icon">
+                                    ❯
+                                </span>
+                            </Link>
+                        )
+                    }
                         
-                            <span className="icon">
-                                ❯
-                            </span>
-                        </Link>
                 </div>
                 <div className="dropdown-menu-item">
                     <Link to='/shop/womens' onClick={toggleDropdownMenu}>
@@ -66,9 +94,30 @@ const DropdownMenu = ({ toggleDropdownMenu }) => {
                         </span>
                     </Link>
                 </div>
+                {
+                    currentUser ? (
+                        <div className="dropdown-menu-item">
+                            <Link to='/' onClick={handleSignOutClick}>
+                                <p>Sign Out</p>
+                            
+                                <span className="icon">
+                                    ❯
+                                </span>
+                            </Link>
+                        </div>
+                    ) : null
+                }
             
         </div>
     )
 };
 
-export default DropdownMenu;
+const mapStateToProps = createStructuredSelector({
+    currentUser: selectCurrentUserData
+});
+
+const mapDispatchToProps = dispatch => ({
+    setCurrentUser: user => dispatch(setCurrentUser(user))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(DropdownMenu);

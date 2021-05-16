@@ -11,10 +11,10 @@
 }
 
 .dropdown-menu-item {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-weight: 500;
     border-bottom: 1px solid #EAEAEA;
-    padding: 1rem;
+    padding: .75rem;
 }
 
 .dropdown-menu-item a {

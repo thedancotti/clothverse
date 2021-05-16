@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { setCurrentUser } from '../../redux/user/user.actions';
-import { selectCollections, selectCollectionsForPreview } from '../../redux/shop/shop.selectors';
 
 import SignUpForm from '../sign-up-form/sign-up-form.component';
 import SignInForm from '../sign-in-form/sign-in-form.component';
@@ -11,9 +10,11 @@ import {
     signInWithEmailAndPassword, 
     createUserWithEmailAndPassword,
     signInWithGoogle,
-    convertArrayToFirestoreCollection 
 } from '../../firebase/firebase.utils';
+
 import { createStructuredSelector } from 'reselect';
+import { selectCurrentUser } from '../../redux/user/user.selectors';
+import { Redirect } from 'react-router';
 
 class SignInAndSignUp extends React.Component {
     constructor(props) {
@@ -60,7 +61,10 @@ class SignInAndSignUp extends React.Component {
             alert(`Unable to sign up. Passwords don't match!`);
         } else {
             createUserWithEmailAndPassword(email, password)
-                .then(user => this.props.setCurrentUser(user))
+                .then(user => {
+                    this.props.setCurrentUser(user);
+
+                })
                 .catch(error => alert(error.message))
         }
     };
@@ -80,6 +84,8 @@ class SignInAndSignUp extends React.Component {
     }
 
     render() {
+        if(this.props.currentUser) return <Redirect to='/' />
+        
         return (
             <div className="card ma3">
                 <SignUpForm 
@@ -107,7 +113,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const mapStateToProps = createStructuredSelector({
-    collections: selectCollectionsForPreview
+    currentUser: selectCurrentUser
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignInAndSignUp);

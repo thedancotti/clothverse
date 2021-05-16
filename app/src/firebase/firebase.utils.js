@@ -44,3 +44,5 @@ const firebaseConfig = {
 
     return arrayOfFirebaseResults;
   };
+
+  export const signOut = () => auth.signOut();
