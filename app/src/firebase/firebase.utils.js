@@ -18,6 +18,9 @@ const firebaseConfig = {
 
   const provider = new firebase.auth.GoogleAuthProvider();
 
+  // initialize database variable
+  export const firestoreDb = firebase.firestore();
+
   export const signInWithEmailAndPassword = (email, password) => 
     auth.signInWithEmailAndPassword(email, password);
 
@@ -25,3 +28,19 @@ const firebaseConfig = {
     auth.createUserWithEmailAndPassword(email, password);
 
   export const signInWithGoogle = () => auth.signInWithPopup(provider);
+
+  // helper function that allows you to upload an array of objects to firestore db
+  // array of objects will be stored in db as collection of documents
+  // for now, this function enables us to convert SHOP_DATA(/shop/shop.data.js)
+  // to collections of documents in firebase
+  export const convertArrayToFirestoreCollection = (collectionName, array) => {
+    const arrayOfFirebaseResults = [].concat(array);
+
+    arrayOfFirebaseResults.map(item => 
+      firestoreDb.collection(collectionName).doc(item.routeName).set(item)
+        .then(result => result)
+        .catch(error => error)
+    );
+
+    return arrayOfFirebaseResults;
+  };

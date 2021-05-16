@@ -1,3 +1,4 @@
+// Back up data in case something happens to firebase
 const SHOP_DATA = {
     hats: {
       id: 1,

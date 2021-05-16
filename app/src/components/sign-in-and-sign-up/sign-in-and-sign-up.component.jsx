@@ -10,7 +10,8 @@ import SignInForm from '../sign-in-form/sign-in-form.component';
 import { 
     signInWithEmailAndPassword, 
     createUserWithEmailAndPassword,
-    signInWithGoogle 
+    signInWithGoogle,
+    convertArrayToFirestoreCollection 
 } from '../../firebase/firebase.utils';
 import { createStructuredSelector } from 'reselect';
 
@@ -24,15 +25,6 @@ class SignInAndSignUp extends React.Component {
             textStyleOnSignUp: "",
             userCredentials: {}
         }
-    }
-
-    //uploading shop data to firestore
-    componentDidMount() {
-        const { collections } = this.props;
-        let db;
-        collections.forEach(collection => {
-            //not ready yet
-        })
     }
 
     setSignInStatus = () => {
