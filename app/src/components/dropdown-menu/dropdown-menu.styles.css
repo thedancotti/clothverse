@@ -1,0 +1,34 @@
+.dropdown-menu {
+    height: 82vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.close-menu-icon {
+    position: absolute;
+    top: 37.5px;
+    left: 19px;
+}
+
+.dropdown-menu-item {
+    font-size: 1.5rem;
+    font-weight: 500;
+    border-bottom: 1px solid #EAEAEA;
+    padding: 1rem;
+}
+
+.dropdown-menu-item a {
+    display: flex;
+    justify-content: space-between;
+    text-decoration: none;
+    color: black;
+    width: 100%;
+}
+
+.dropdown-menu-item p {
+    margin: 0;
+}
+
+.dropdown-menu-item p, .icon {
+    padding: 1rem;
+}

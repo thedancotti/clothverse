@@ -17,7 +17,7 @@ const CheckoutPage = ({ cartItems, cartTotal }) => {
     return (
         <div className="checkout-page"
         style={{
-            marginTop: '160px'
+            marginTop: '140px'
         }}
         >
             <CheckoutCart cartItems={cartItems} />
@@ -38,6 +38,18 @@ const CheckoutPage = ({ cartItems, cartTotal }) => {
                             billingAddress={true}
                             zipCode={false}
                         />
+                        <div className="pa3">
+                            <p className="f3 red">
+                                * Please use the following test card for payments*
+                            </p>
+                            <p className="f3 black">
+                                4242 4242 4242 4242
+                            </p>
+                            <p className="f3 black">
+                            Exp: 01/25 - CVV: 123
+                            </p>
+                        </div>
+                        
                     </div>
                 )
                 : null

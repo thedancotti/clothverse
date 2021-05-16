@@ -7,7 +7,7 @@ import FeaturedCollections from '../../components/featured-collections/featured-
 const HomePage = () => (
    <div className="home-page"
         style={{
-            marginTop: '160px'
+            marginTop: '140px'
         }}
    >
        <HeroSection />

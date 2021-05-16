@@ -13,7 +13,7 @@ import './cart-dropdown.styles.css';
 
 const CartDropdown = ({ cartItems, toggleCartHidden }) => (
     <div className="cart-dropdown flex flex-column">
-        <div className="pre" style={{height: "300px"}}>
+        <div style={{height: "300px", overflow: "scroll"}}>
             {
                 cartItems.length > 0 
                 ? cartItems.map((item, index) =>

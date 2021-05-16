@@ -8,7 +8,7 @@ const CollectionPage = ({ collection }) => {
     const { items } = collection;
     return (
         <div className="collection-page">
-            <h1 className="tc">{collection.title}</h1>
+            <h1 className="ml2">{collection.title}</h1>
             <div 
                 className="mt2 flex flex-wrap flex-auto"
                 style={{justifyContent: "space-evenly"}}

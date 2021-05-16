@@ -7,7 +7,7 @@ import CollectionPage from '../collectionpage/collectionpage.component';
 const ShopPage = ({ match }) => (
     <div className="shop-page"
         style={{
-            marginTop: '160px'
+            marginTop: '140px'
         }}
     >
         <Route exact path={`${match.path}`} component={CollectionsOverview} />
